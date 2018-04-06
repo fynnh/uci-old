@@ -16,11 +16,23 @@ script:
 - cmake . -DBUILD_LUA=OFF
 - make -j1
 - make package
+
 deploy:
-  provider: releases
-  api_key:
-    secure: TkIxb7LiWHKdEjEGsC0IEon6Mdo4zun6/tK6WgdnkIoDXIIapMd/JF3tRsQgYMAatSlmoLmB6rVgt3mQGJHxR9tomLoyhwc3llkEJAfBXGnHnrsnjcDDUj0xQXfl0VNAI8n+VCBfyzoYRViKKaLphI+t3xMeJk4n09/+LntECy623cNCenSXOBYqKefEvlLlAt78p/dtnwGF+QP1JnQ6cpdzZYM0hAR9i5QPU7qLTygZAfNBE3D73zUJXvbvhx2ut3bIBcYEPtouU87oELC5pLWQrAKUywmFpllz09/2sM24YkBXrwbFzxHMqQJdeQlK1yqkOd1ndMwBCp9hUU8FvzAf/VD4Q+SFfXenl7w4HKDOTS17EBqRS/8oc2agbnKNdBokbuA0wWjs54udyEhK+E9iob6IeZ2Dqld2/tPJUKxncTSYwBji6f5E4c/bl8+kNoY3p1WwbRGNA6EiLQvfKe1UrztXczvUxvZndrWVkQe5CTLrFfwvhgmX1+GJIdNidjjM9YZW1lo0WYCbqKWxW1bt9PVDXBjq1HvspuPActh3Q63My9UNbBxnSLW9tvvzs2n0m3YBQLudLl/bQ8dzuWDcdkij67BUY97j2oWXev/Si50qdGCLrZHZdPoanbRX9f6FwzAfJSK4yAgvB0KUDrEUDBvpLneg4gSQxswmyF0=
-  file: uci-1.0-Linux.deb
-  skip_cleanup: true
-  on:
-    all_branches: true
+  - provider: releases
+    api_key:
+      secure: TkIxb7LiWHKdEjEGsC0IEon6Mdo4zun6/tK6WgdnkIoDXIIapMd/JF3tRsQgYMAatSlmoLmB6rVgt3mQGJHxR9tomLoyhwc3llkEJAfBXGnHnrsnjcDDUj0xQXfl0VNAI8n+VCBfyzoYRViKKaLphI+t3xMeJk4n09/+LntECy623cNCenSXOBYqKefEvlLlAt78p/dtnwGF+QP1JnQ6cpdzZYM0hAR9i5QPU7qLTygZAfNBE3D73zUJXvbvhx2ut3bIBcYEPtouU87oELC5pLWQrAKUywmFpllz09/2sM24YkBXrwbFzxHMqQJdeQlK1yqkOd1ndMwBCp9hUU8FvzAf/VD4Q+SFfXenl7w4HKDOTS17EBqRS/8oc2agbnKNdBokbuA0wWjs54udyEhK+E9iob6IeZ2Dqld2/tPJUKxncTSYwBji6f5E4c/bl8+kNoY3p1WwbRGNA6EiLQvfKe1UrztXczvUxvZndrWVkQe5CTLrFfwvhgmX1+GJIdNidjjM9YZW1lo0WYCbqKWxW1bt9PVDXBjq1HvspuPActh3Q63My9UNbBxnSLW9tvvzs2n0m3YBQLudLl/bQ8dzuWDcdkij67BUY97j2oWXev/Si50qdGCLrZHZdPoanbRX9f6FwzAfJSK4yAgvB0KUDrEUDBvpLneg4gSQxswmyF0=
+    file: uci-1.0-Linux.deb
+    skip_cleanup: true
+    on:
+      all_branches: true
+  - provider: packagecloud
+    repository: "openc2x"
+    token:
+      secure: gaAPn6f4l2gcrkBt5OO3OKmq9daS0k8JtZd5zTfV+PMhB9XiGFIdt/2TtOaYPOfJ3ytj8qiVJUmPmG/gfXtIraGJmf9RHUPVWHw2RjxqxBF+66dW87wphHjpe3l3EL2yqs0jEuJnmhSupMmHerSP2y6z6hDSxGmQmoD7ONf3LixS+fKixDbh5Wq5euReH/uEoIfcpo7aCyRQh/QdBHtKCjUxYHfXdMqwirx39JYhSwGZYfAvNU0pTrEX0UJyOrdf2FvfHoq0aG1WBuPZ4iIeZwLulPCRWGuJ0IPqlKl9T+f1y95vham4UzWf4+9kzkBT51LZeSX7/uDN78bFEgXnFws+LfC5N26TBXvK4az7vJ2zquk3PPsiirp/RWAgSna+hXBrg730dwfZGsYQXhYG1gPYn6eXsBUvnnmv1ye93z42+9qHbJo4K6VAj5M+5dxQr8hQdLKSjoLnz3WbsravbdCPNJvg4OzOIy0KwWwXwRcAWhF0ui6TJ54CASpVGtMOJ+E0H8SJEheo3HlPzCwhKuodVXZioIr2eEPHjCKsgykDIp0GndB0qHGR503xu33+SkXAUfIHneZ59ksOhUtgExGccEnTxsdj1/rBTo9+N+rF+wlL2oGhcsTqhByG39Wkh5pfqCVzivXur29wDtnqD1DpTyfPM7bcFi4o+APjhdw=
+
+    username: "fynnh"
+    dist: "ubuntu/trusty" # like 'ubuntu/precise', or 'centos/5', if pushing deb or rpms   
+    skip_cleanup: true
+    on:
+      all_branches: true
+    package_glob: "*.deb"
