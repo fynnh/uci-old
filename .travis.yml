@@ -34,5 +34,5 @@ deploy:
     dist: "ubuntu/trusty" # like 'ubuntu/precise', or 'centos/5', if pushing deb or rpms   
     skip_cleanup: true
     on:
-      all_branches: true
+      branch: master
     package_glob: "uci*.deb"
