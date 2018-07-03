@@ -1,0 +1,25 @@
+{
+		 "package": {
+			 "name": "uci",
+			 "repo": "openc2x",
+			 "subject": "fynnh"
+		 },
+
+		 "version": {
+			 "name": "0",
+			 "desc": "Automatic deploy",
+			 "gpgSign": false
+		 },
+
+		 "files":
+		 [{
+		   "includePattern": "uci*deb$)",
+		   "uploadPattern": "$1",
+		   "matrixParams": {
+			 "deb_distribution": "none",
+			 "deb_component": "main",
+			 "deb_architecture": "amd64",
+			 "override": 1}
+		 }],
+		 "publish": true
+	}
