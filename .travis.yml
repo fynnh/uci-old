@@ -43,7 +43,7 @@ deploy:
       branch: master
     package_glob: "uci*.deb"
   - provider: bintray
-    file: bintray-descriptor_tmp.json
+    file: bintray_descriptor_tmp.json
     user: fynnh
     key:
       secure: "EoClR3KWSU1aLuhfLfg3uFJoXG5fzuaDETZe2ex2NMtvirhKEzxdPfY911I+4Ua1140uM4/DsYspxSYJlzIBTVzNg0E/xCSb7zYFGbz7cM/zridYk/9F4G0qXMXE1hhu6ituj/ATa0Q6Bzrpd406f2kTmI3xiYFYF8AdZi/BaWEcHOdHrFuwk6e8Z0CYMzTg9RvLnvitHV+Bilv9I8VSuU9xD1bK7EaGsRHVmy9g7iIOQuOKY6MBxqMqX1w5sNGdGSVOrw4itfkuHO15gzwk7uLAD4mn9s2N0fMoUDAjsvhHvNEsiRJw1ly32iJximTGSLW3vHTDBw6V+pjG7MBu04iBWLYKoms28LQWNT1gDiRV5EGbUM1bLUEeEgDhVZARF/bTWSATlGsvZrkJOH/rXXL6z3M5KI0zv9/bBosIxyXpKAHqOMO86yIFw3kGMQRy1XZX9eY124YO9CouRJlZyul+Mbptdqj5EnWyl6aEKNG55Wdz3eBaZqSYnGNTVOOyOBYrNNmNOr26FnmbpTEw/9/vCBuzJYo1bQ7WWCAz2RNPVK+GrSc8sXLSbxnF5Y7KtF7fRy1fkmg4pu7pP2t8Mh87YmVsfQ36DGUSypcBAu2JMzD7TCMmvB+3r2Aqeu3RErOnqaeazk6BeN+TpasdB1dvmOSZ4mHJMMV2j6kt5Hs="
