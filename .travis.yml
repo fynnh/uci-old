@@ -21,6 +21,7 @@ script:
 before_deploy:
 - python create_descriptor.py --version "1.${DATE}" --dist trusty --arch amd64
 - git tag "${DATE}" || true
+- ls
 
 deploy:
   - provider: releases
