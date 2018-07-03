@@ -4,7 +4,7 @@ import getopt
 
 def saveDescriptor(version, dist, arch):
 	with open('bintray_descriptor.json') as f:
-		descriptor = json.load(f)
+		descriptor = json.load(f)		
 		descriptor["version"]["name"] = version
 		for f in descriptor["files"]:
 			f["matrixParams"]["deb_distribution"] = dist
