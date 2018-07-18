@@ -28,12 +28,9 @@ addons:
     - liblua5.2-dev
 
 before_install:
-  - cat /etc/apt/sources.list
   - echo "deb https://dl.bintray.com/$BINTRAY_USER/debian trusty main" | sudo tee -a /etc/apt/sources.list
   - sudo apt-get update
   - sudo apt-get install ubox --allow-unauthenticated
-#  - wget -O /tmp/ubox-1.0-Linux.deb https://github.com/fynnh/libubox/releases/download/untagged-2f3d0fb32fe4d665624f/ubox-1.0-Linux.deb
-#  - sudo dpkg -i /tmp/ubox-1.0-Linux.deb
   - export DATE=$(date +'%Y%m%d%H%M%S')
   - export BUILD_VERSION=1.$DATE
   - export BUILD_DATE=$(date "+%Y%m%d")
@@ -51,7 +48,6 @@ before_deploy:
   - sed -i "s/__LICENSE__/$BINTRAY_LICENSE/g" bintray-descriptor.json
   - sed -i "s/__VERSION__/$BUILD_VERSION/g" bintray-descriptor.json
   - git tag "${DATE}" || true
-  - ls
 
 deploy:
   - provider: releases
