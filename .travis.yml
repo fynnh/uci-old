@@ -29,9 +29,9 @@ addons:
 
 before_install:
   - cat /etc/apt/sources.list
-  - echo "deb https://dl.bintray.com/fynnh/debian trusty main" | sudo tee -a /etc/apt/sources.list
+  - echo "deb https://dl.bintray.com/$BINTRAY_USER/debian trusty main" | sudo tee -a /etc/apt/sources.list
   - sudo apt-get update
-  - sudo apt-get install ubox
+  - sudo apt-get install ubox --allow-unauthenticated
 #  - wget -O /tmp/ubox-1.0-Linux.deb https://github.com/fynnh/libubox/releases/download/untagged-2f3d0fb32fe4d665624f/ubox-1.0-Linux.deb
 #  - sudo dpkg -i /tmp/ubox-1.0-Linux.deb
   - export DATE=$(date +'%Y%m%d%H%M%S')
