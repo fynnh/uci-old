@@ -27,10 +27,12 @@ addons:
     - libjson-c-dev
     - liblua5.2-dev
 
-
 before_install:
-  - wget -O /tmp/ubox-1.0-Linux.deb https://github.com/fynnh/libubox/releases/download/untagged-2f3d0fb32fe4d665624f/ubox-1.0-Linux.deb
-  - sudo dpkg -i /tmp/ubox-1.0-Linux.deb
+  - echo "deb https://dl.bintray.com/$BINTRAY_USER/debian trusty" | sudo tee -a /etc/apt/sources.list
+  - sudo apt-get update
+  - sudo apt-get install ubox
+#  - wget -O /tmp/ubox-1.0-Linux.deb https://github.com/fynnh/libubox/releases/download/untagged-2f3d0fb32fe4d665624f/ubox-1.0-Linux.deb
+#  - sudo dpkg -i /tmp/ubox-1.0-Linux.deb
   - export DATE=$(date +'%Y%m%d%H%M%S')
   - export BUILD_VERSION=1.$DATE
   - export BUILD_DATE=$(date "+%Y%m%d")
