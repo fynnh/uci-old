@@ -1,3 +1,19 @@
+##############################################################################################
+#
+# Travis CI configuration file
+# 
+# Set the required secrets in the build settings of the project:
+#   - BINTRAY_USER
+#   - BINTRAY_API_KEY
+#
+##############################################################################################
+
+env:
+  global:
+  - PACKAGE_NAME=uci
+  - BINTRAY_REPO_NAME=debian
+  - BINTRAY_LICENSE=ISC
+
 sudo: required
 dist: trusty
 language: cpp
@@ -9,14 +25,8 @@ addons:
     - lua5.2
     - libjson-c-dev
     - liblua5.2-dev
-    
-env:
-  global:
-  - PACKAGE_NAME=uci
-  - BINTRAY_REPO_NAME=debian
-  - BINTRAY_LICENSE=ISC
-    
-    
+
+
 before_install:
   - wget https://github.com/fynnh/libubox/releases/download/untagged-2f3d0fb32fe4d665624f/ubox-1.0-Linux.deb
   - sudo dpkg -i ubox-1.0-Linux.deb
@@ -63,7 +73,7 @@ deploy:
       branch: master
     package_glob: "uci*.deb"
   - provider: bintray
-    file: bintray_descriptor.json
+    file: bintray-descriptor.json
     user: $BINTRAY_USER
     key: $BINTRAY_API_KEY
     skip_cleanup: true
