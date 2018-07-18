@@ -1,25 +1,32 @@
 {
-		 "package": {
-			 "name": "uci",
-			 "repo": "openc2x",
-			 "subject": "fynnh"
-		 },
+	"package": {
+		"name": "__NAME__",
+		"repo": "__REPO_NAME__",
+		"subject": "__SUBJECT__"
+	},
+	
+	"version": {
+		"name": "__VERSION__",
+		"desc": "__NAME__ __VERSION__ by __SUBJECT__"
+	},
 
-		 "version": {
-			 "name": "0",
-			 "desc": "Automatic deploy",
-			 "gpgSign": false
-		 },
+	"licenses": ["__LICENSE__"],
 
-		 "files":
-		 [{
-		   "includePattern": "./(uci.*).deb",
-		   "uploadPattern": "$1",
-		   "matrixParams": {
-			 "deb_distribution": "none",
-			 "deb_component": "main",
-			 "deb_architecture": "amd64",
-			 "override": 1}
-		 }],
-		 "publish": true
-	}
+	"desc": "Debian package built and deployed completely automatically",
+
+	"files": [
+		{
+			"includePattern": "./(.[^/]*(\\.deb)$)",
+			"uploadPattern": "pool/main/__NAME__/$1",
+			"matrixParams": {
+				"deb_distribution": "trusty",
+				"deb_component": "main",
+				"deb_architecture": "amd64"
+			}
+		}
+	],
+
+	"publish": true,
+
+	"override": false
+}
