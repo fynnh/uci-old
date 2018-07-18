@@ -5,6 +5,7 @@
 # Set the required secrets in the build settings of the project:
 #   - BINTRAY_USER
 #   - BINTRAY_API_KEY
+#   - GITHUB_API_KEY
 #
 ##############################################################################################
 
@@ -34,10 +35,7 @@ before_install:
   - export BUILD_VERSION=1.$DATE
   - export BUILD_DATE=$(date "+%Y%m%d")
 
-
-
 script:
-
 - cmake . -DBUILD_LUA=OFF -DMINOR="${DATE}"
 - make -j1
 - make package
@@ -54,24 +52,12 @@ before_deploy:
 
 deploy:
   - provider: releases
-    api_key:
-      secure: TkIxb7LiWHKdEjEGsC0IEon6Mdo4zun6/tK6WgdnkIoDXIIapMd/JF3tRsQgYMAatSlmoLmB6rVgt3mQGJHxR9tomLoyhwc3llkEJAfBXGnHnrsnjcDDUj0xQXfl0VNAI8n+VCBfyzoYRViKKaLphI+t3xMeJk4n09/+LntECy623cNCenSXOBYqKefEvlLlAt78p/dtnwGF+QP1JnQ6cpdzZYM0hAR9i5QPU7qLTygZAfNBE3D73zUJXvbvhx2ut3bIBcYEPtouU87oELC5pLWQrAKUywmFpllz09/2sM24YkBXrwbFzxHMqQJdeQlK1yqkOd1ndMwBCp9hUU8FvzAf/VD4Q+SFfXenl7w4HKDOTS17EBqRS/8oc2agbnKNdBokbuA0wWjs54udyEhK+E9iob6IeZ2Dqld2/tPJUKxncTSYwBji6f5E4c/bl8+kNoY3p1WwbRGNA6EiLQvfKe1UrztXczvUxvZndrWVkQe5CTLrFfwvhgmX1+GJIdNidjjM9YZW1lo0WYCbqKWxW1bt9PVDXBjq1HvspuPActh3Q63My9UNbBxnSLW9tvvzs2n0m3YBQLudLl/bQ8dzuWDcdkij67BUY97j2oWXev/Si50qdGCLrZHZdPoanbRX9f6FwzAfJSK4yAgvB0KUDrEUDBvpLneg4gSQxswmyF0=
+    api_key: $GITHUB_API_KEY
     file_glob: true
     file: uci-*-Linux.deb
     skip_cleanup: true
     on:
       branch: master
-  - provider: packagecloud
-    repository: "openc2x"
-    token:
-      secure: OPoE1tvAoXWAZx6nksoRcWeYJL81aLbK9qvmzK12Bl3rKDzlzSJR0v+dhrKWAGbOsXaaTNeL2O4VBEvcHg9w32xdPGMTEH9RwuNN66BYoSBAQ+I3PJLpiCyJkXH6QMPNeNsUJHbmmPOXSUhrWe3uhzRieJC2sgT+ggxwbvIKuhM0LmGIV/VZ5MIZchIhgy0YS7pE5I/Xwxt8axuHDFSONEUeQVHFyU13w0iZ+0whKPe0HFBzx8lZHI+dpXjMzo0YffNZ9uqBb7MhzhuaTvaGLqVGpkdybJFj0CDXTY6s2c8TSInT3549Ot4lDoFvZiN1mce9IPZfmJSgdLzViFf/nrUwlI2QeMQ8Su4EdShsH5Z8Q0aRFnH9WNlUu4DBVixZdBcJyA9FYzaeC1fRhMKuaPLc91HjPKVPdCMWBk4AF8cgo+3AsqnnEEJNSgsXO8KXltYavSDkiGS+146N+/dk1ZbhjnYQxNtdn5B+Cz09MW92DCGmMkpTsHZig7x3ANorj1R4cOazHGu2ENIHue718D8PBc/cIR4KJ7mj17bLW9DB0+95/HlY313QwKaL5WK6tvwR50JmC6j5RoDdswVtSDEnb0XG1gKxbGofizrvkb2gVZYgBzEn4NcL5N+c9V1812K0sCiVlpHi5ouDIckZOqo0pDE8q4+QDLkxlSkC5rs=
-
-    username: "fynnh"
-    dist: "ubuntu/trusty" # like 'ubuntu/precise', or 'centos/5', if pushing deb or rpms   
-    skip_cleanup: true
-    on:
-      branch: master
-    package_glob: "uci*.deb"
   - provider: bintray
     file: bintray-descriptor.json
     user: $BINTRAY_USER
